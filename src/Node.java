@@ -3,19 +3,20 @@ public class Node {
 
 	int x;
 	int y;
+	int goCost;
 
-	double f;
-	double g;
-	double h;
+	int f;
+	int g;
+	int h;
 
 	Node(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
 
-	public void setH(Node goal) {
+	public int getH(Node goal) {
 
-		this.h = Math.abs(goal.x - this.x) + Math.abs(goal.y - this.y);
+		return Math.abs(goal.x - this.x) + Math.abs(goal.y - this.y);
 
 	}
 	
@@ -23,8 +24,10 @@ public class Node {
 	public Node[] neighbor(Mazu mazu) {
 		Node[] neighbor = new Node[8];
 
-		if (mazu.map[x][y - 1] == 0)
+		if (mazu.map[x][y - 1] == 0) {
 			neighbor[0] = new Node(x, y - 1);
+			neighbor[0].goCost = 10;			
+		}
 		
 		if (mazu.map[x + 1][y - 1] == 0)
 			neighbor[1] = new Node(x + 1, y - 1);
