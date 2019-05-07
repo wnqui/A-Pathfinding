@@ -6,7 +6,7 @@ public class Path {
 	ArrayList<Node> close = new ArrayList<Node>();
 	ArrayList<Node> cameFrom = new ArrayList<Node>();
 	
-	public ArrayList<Node> pathfinding(Node start , Node goal , Mazu mazu) {
+	public ArrayList<Node> pathfinding(Node start , Node goal , Maze mazu) {
 		//初始化 open 和 close open加入 起點
 		open.clear();
 		close.clear();	
@@ -28,14 +28,14 @@ public class Path {
 			close.add(current);
 			
 			//遍歷 當前點 之 鄰近點;
-			Node[] neighbor = current.neighbor(mazu);
+			Node[] neighbor = current.neighbor(mazu , goal);
 			for (int i = 0; i < neighbor.length; i++) {
 				//如果 當前點之鄰點在 close裡 則跳過不動作
 				if( close.contains(neighbor[i]) ) {
 					continue;
 				}
 				//計算 g值
-				int g = current.g + neighbor[i].goCost;
+				int g = current.g + neighbor[i].g;
 				
 				
 				//如果鄰點不在 open裡 則加入
@@ -47,7 +47,7 @@ public class Path {
 				
 				//計算鄰點 f g 值
 				neighbor[i].g = g;
-				neighbor[i].f = g + neighbor[i].getH(goal);
+				neighbor[i].f = g + neighbor[i].getHscore(goal);
 			}
 				
 			

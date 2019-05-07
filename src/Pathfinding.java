@@ -18,6 +18,8 @@ public class Pathfinding implements ActionListener {
 	public static JFrame JF;
 	public static myJPanel MP;
 	public static Pathfinding PF;
+	public static Maze M = new Maze();
+	public static Node start = new Node(5,5);
 	//control
 	
 	
@@ -48,6 +50,9 @@ public class Pathfinding implements ActionListener {
 		g2.setColor(Color.white);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 		
+		//µe¦a¹Ï
+		M.drawMaze(g);
+		start.draw(g);
 	}
 	
 	public static void main(String[] args) {
